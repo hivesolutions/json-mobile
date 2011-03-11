@@ -1,0 +1,214 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		C2935B9F132AD9A600B39BE2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2935B9E132AD9A600B39BE2 /* Foundation.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		C2935B9B132AD9A600B39BE2 /* libjson_mobile.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libjson_mobile.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		C2935B9E132AD9A600B39BE2 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		C2935BA2132AD9A600B39BE2 /* json_mobile-Prefix.pch */ = {isa = PBXFileReference; path = "json_mobile-Prefix.pch"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		C2935B98132AD9A600B39BE2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C2935B9F132AD9A600B39BE2 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		C2935B90132AD9A500B39BE2 = {
+			isa = PBXGroup;
+			children = (
+				C2935BA0132AD9A600B39BE2 /* json_mobile */,
+				C2935B9D132AD9A600B39BE2 /* Frameworks */,
+				C2935B9C132AD9A600B39BE2 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		C2935B9C132AD9A600B39BE2 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C2935B9B132AD9A600B39BE2 /* libjson_mobile.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C2935B9D132AD9A600B39BE2 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C2935B9E132AD9A600B39BE2 /* Foundation.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C2935BA0132AD9A600B39BE2 /* json_mobile */ = {
+			isa = PBXGroup;
+			children = (
+				C2935BA1132AD9A600B39BE2 /* Supporting Files */,
+			);
+			path = json_mobile;
+			sourceTree = "<group>";
+		};
+		C2935BA1132AD9A600B39BE2 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				C2935BA2132AD9A600B39BE2 /* json_mobile-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		C2935B99132AD9A600B39BE2 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		C2935B9A132AD9A600B39BE2 /* json_mobile */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C2935BA5132AD9A600B39BE2 /* Build configuration list for PBXNativeTarget "json_mobile" */;
+			buildPhases = (
+				C2935B97132AD9A600B39BE2 /* Sources */,
+				C2935B98132AD9A600B39BE2 /* Frameworks */,
+				C2935B99132AD9A600B39BE2 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = json_mobile;
+			productName = json_mobile;
+			productReference = C2935B9B132AD9A600B39BE2 /* libjson_mobile.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		C2935B92132AD9A500B39BE2 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				ORGANIZATIONNAME = "Hive Solutions Lda.";
+			};
+			buildConfigurationList = C2935B95132AD9A500B39BE2 /* Build configuration list for PBXProject "json_mobile" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = C2935B90132AD9A500B39BE2;
+			productRefGroup = C2935B9C132AD9A600B39BE2 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				C2935B9A132AD9A600B39BE2 /* json_mobile */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		C2935B97132AD9A600B39BE2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		C2935BA3132AD9A600B39BE2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		C2935BA4132AD9A600B39BE2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				SDKROOT = iphoneos;
+			};
+			name = Release;
+		};
+		C2935BA6132AD9A600B39BE2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				DSTROOT = /tmp/json_mobile.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "json_mobile/json_mobile-Prefix.pch";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		C2935BA7132AD9A600B39BE2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				DSTROOT = /tmp/json_mobile.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "json_mobile/json_mobile-Prefix.pch";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C2935B95132AD9A500B39BE2 /* Build configuration list for PBXProject "json_mobile" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C2935BA3132AD9A600B39BE2 /* Debug */,
+				C2935BA4132AD9A600B39BE2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C2935BA5132AD9A600B39BE2 /* Build configuration list for PBXNativeTarget "json_mobile" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C2935BA6132AD9A600B39BE2 /* Debug */,
+				C2935BA7132AD9A600B39BE2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = C2935B92132AD9A500B39BE2 /* Project object */;
+}
