@@ -13,7 +13,7 @@
 /* Begin PBXFileReference section */
 		C2935B9B132AD9A600B39BE2 /* libjson_mobile.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libjson_mobile.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		C2935B9E132AD9A600B39BE2 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		C2935BA2132AD9A600B39BE2 /* json_mobile-Prefix.pch */ = {isa = PBXFileReference; path = "json_mobile-Prefix.pch"; sourceTree = "<group>"; };
+		C2935BA2132AD9A600B39BE2 /* json_mobile-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "json_mobile-Prefix.pch"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,7 +31,7 @@
 		C2935B90132AD9A500B39BE2 = {
 			isa = PBXGroup;
 			children = (
-				C2935BA0132AD9A600B39BE2 /* json_mobile */,
+				C2935BA0132AD9A600B39BE2 /* Json Mobile */,
 				C2935B9D132AD9A600B39BE2 /* Frameworks */,
 				C2935B9C132AD9A600B39BE2 /* Products */,
 			);
@@ -53,11 +53,12 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		C2935BA0132AD9A600B39BE2 /* json_mobile */ = {
+		C2935BA0132AD9A600B39BE2 /* Json Mobile */ = {
 			isa = PBXGroup;
 			children = (
 				C2935BA1132AD9A600B39BE2 /* Supporting Files */,
 			);
+			name = "Json Mobile";
 			path = json_mobile;
 			sourceTree = "<group>";
 		};
