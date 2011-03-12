@@ -8,12 +8,16 @@
 
 /* Begin PBXBuildFile section */
 		C2935B9F132AD9A600B39BE2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2935B9E132AD9A600B39BE2 /* Foundation.framework */; };
+		C2B4DFB6132ADB430067264D /* JsonMobile.h in Headers */ = {isa = PBXBuildFile; fileRef = C2B4DFB4132ADB430067264D /* JsonMobile.h */; };
+		C2B4DFB7132ADB430067264D /* JsonMobile.m in Sources */ = {isa = PBXBuildFile; fileRef = C2B4DFB5132ADB430067264D /* JsonMobile.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		C2935B9B132AD9A600B39BE2 /* libjson_mobile.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libjson_mobile.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		C2935B9E132AD9A600B39BE2 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		C2935BA2132AD9A600B39BE2 /* json_mobile-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "json_mobile-Prefix.pch"; sourceTree = "<group>"; };
+		C2B4DFB4132ADB430067264D /* JsonMobile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JsonMobile.h; sourceTree = "<group>"; };
+		C2B4DFB5132ADB430067264D /* JsonMobile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JsonMobile.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +61,8 @@
 			isa = PBXGroup;
 			children = (
 				C2935BA1132AD9A600B39BE2 /* Supporting Files */,
+				C2B4DFB4132ADB430067264D /* JsonMobile.h */,
+				C2B4DFB5132ADB430067264D /* JsonMobile.m */,
 			);
 			name = "Json Mobile";
 			path = json_mobile;
@@ -77,6 +83,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C2B4DFB6132ADB430067264D /* JsonMobile.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -130,6 +137,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C2B4DFB7132ADB430067264D /* JsonMobile.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -208,6 +216,7 @@
 				C2935BA7132AD9A600B39BE2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
