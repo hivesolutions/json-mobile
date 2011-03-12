@@ -90,13 +90,13 @@
 		return nil;
 	}
 	
-	if (ok)
+    // in case the result is ok
+	if (ok) {
 		return streamWriter.data;
+    }
 	
 	self.error = streamWriter.error;
 	return nil;	
 }
-	
-	
 
 @end
