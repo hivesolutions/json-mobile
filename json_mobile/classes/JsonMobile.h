@@ -28,4 +28,6 @@
 @interface JsonMobile : NSObject {    
 }
 
+- (void)hello;
+
 @end

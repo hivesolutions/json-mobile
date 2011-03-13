@@ -27,4 +27,8 @@
 
 @implementation JsonMobile
 
+- (void)hello {
+    printf("Hello World");
+}
+
 @end
