@@ -78,8 +78,10 @@
 	parser.maxDepth = self.maxDepth;
 	parser.delegate = adapter;
 	
+    // initializes the return value
 	id retval = nil;
-	switch ([parser parse:data]) {
+    
+    switch ([parser parse:data]) {
 		case SBJsonStreamParserComplete:
 			retval = [value autorelease];
 			break;
@@ -90,9 +92,8 @@
 
 		case SBJsonStreamParserError:
 		    self.error = parser.error;
-			break;
+            break;
 	}
-	
 
 	[adapter release];
 	[parser release];
