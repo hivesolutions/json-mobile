@@ -351,12 +351,7 @@ again: while (i < len) {
 
 - (NSString*)decodeUnicodeEscape:(const char *)bytes index:(NSUInteger *)index {
 	unichar hi = [self decodeHexQuad:bytes + *index];
-    
-	if (hi < 0) {
-		self.error = @"Missing hex quad";
-		return nil;
-	}
-    
+        
     // increments the index by four
 	*index += 4;
 
