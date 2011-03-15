@@ -1,22 +1,22 @@
 /*
  Copyright (c) 2010, Stig Brautaset.
  All rights reserved.
- 
+
  Redistribution and use in source and binary forms, with or without
  modification, are permitted provided that the following conditions are
  met:
- 
+
    Redistributions of source code must retain the above copyright
    notice, this list of conditions and the following disclaimer.
-  
+
    Redistributions in binary form must reproduce the above copyright
    notice, this list of conditions and the following disclaimer in the
    documentation and/or other materials provided with the distribution.
- 
+
    Neither the name of the the author nor the names of its contributors
    may be used to endorse or promote products derived from this software
    without specific prior written permission.
- 
+
  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS
  IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED
  TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A
@@ -50,25 +50,25 @@ static SBJsonStreamParserState *kSBJsonStreamParserStateArrayNeedValue;
 @implementation SBJsonStreamParserState
 
 - (BOOL)parser:(SBJsonStreamParser*)parser shouldAcceptToken:(sbjson_token_t)token {
-	return NO;
+    return NO;
 }
 
 - (BOOL)parserShouldStop:(SBJsonStreamParser*)parser {
-	return NO;
+    return NO;
 }
 
 - (SBJsonStreamParserStatus)parserShouldReturn:(SBJsonStreamParser*)parser {
-	return SBJsonStreamParserWaitingForData;
+    return SBJsonStreamParserWaitingForData;
 }
 
 - (void)parser:(SBJsonStreamParser*)parser shouldTransitionTo:(sbjson_token_t)tok {}
 
 - (BOOL)needKey {
-	return NO;
+    return NO;
 }
 
 - (NSString*)name {
-	return @"<aaiie!>";
+    return @"<aaiie!>";
 }
 
 @end
@@ -78,56 +78,56 @@ static SBJsonStreamParserState *kSBJsonStreamParserStateArrayNeedValue;
 @implementation SBJsonStreamParserStateStart
 
 + (id)sharedInstance {
-	if (!kSBJsonStreamParserStateStart) {
-		kSBJsonStreamParserStateStart = [[SBJsonStreamParserStateStart alloc] init];
-		kSBJsonStreamParserStateError = [[SBJsonStreamParserStateError alloc] init];
-		kSBJsonStreamParserStateComplete = [[SBJsonStreamParserStateComplete alloc] init];
-		kSBJsonStreamParserStateObjectStart = [[SBJsonStreamParserStateObjectStart alloc] init];
-		kSBJsonStreamParserStateObjectGotKey = [[SBJsonStreamParserStateObjectGotKey alloc] init];
-		kSBJsonStreamParserStateObjectSeparator = [[SBJsonStreamParserStateObjectSeparator alloc] init];
-		kSBJsonStreamParserStateObjectGotValue = [[SBJsonStreamParserStateObjectGotValue alloc] init];
-		kSBJsonStreamParserStateObjectNeedKey = [[SBJsonStreamParserStateObjectNeedKey alloc] init];
-		kSBJsonStreamParserStateArrayStart = [[SBJsonStreamParserStateArrayStart alloc] init];
-		kSBJsonStreamParserStateArrayGotValue = [[SBJsonStreamParserStateArrayGotValue alloc] init];
-		kSBJsonStreamParserStateArrayNeedValue = [[SBJsonStreamParserStateArrayNeedValue alloc] init];
-	}
-	return kSBJsonStreamParserStateStart;
+    if (!kSBJsonStreamParserStateStart) {
+        kSBJsonStreamParserStateStart = [[SBJsonStreamParserStateStart alloc] init];
+        kSBJsonStreamParserStateError = [[SBJsonStreamParserStateError alloc] init];
+        kSBJsonStreamParserStateComplete = [[SBJsonStreamParserStateComplete alloc] init];
+        kSBJsonStreamParserStateObjectStart = [[SBJsonStreamParserStateObjectStart alloc] init];
+        kSBJsonStreamParserStateObjectGotKey = [[SBJsonStreamParserStateObjectGotKey alloc] init];
+        kSBJsonStreamParserStateObjectSeparator = [[SBJsonStreamParserStateObjectSeparator alloc] init];
+        kSBJsonStreamParserStateObjectGotValue = [[SBJsonStreamParserStateObjectGotValue alloc] init];
+        kSBJsonStreamParserStateObjectNeedKey = [[SBJsonStreamParserStateObjectNeedKey alloc] init];
+        kSBJsonStreamParserStateArrayStart = [[SBJsonStreamParserStateArrayStart alloc] init];
+        kSBJsonStreamParserStateArrayGotValue = [[SBJsonStreamParserStateArrayGotValue alloc] init];
+        kSBJsonStreamParserStateArrayNeedValue = [[SBJsonStreamParserStateArrayNeedValue alloc] init];
+    }
+    return kSBJsonStreamParserStateStart;
 }
 
 - (BOOL)parser:(SBJsonStreamParser*)parser shouldAcceptToken:(sbjson_token_t)token {
-	return token == sbjson_token_array_start || token == sbjson_token_object_start;
+    return token == sbjson_token_array_start || token == sbjson_token_object_start;
 }
 
 - (void)parser:(SBJsonStreamParser*)parser shouldTransitionTo:(sbjson_token_t)tok {
 
-	SBJsonStreamParserState *state = nil;
-	switch (tok) {
-		case sbjson_token_array_start:
-			state = kSBJsonStreamParserStateArrayStart;
-			break;
-			
-		case sbjson_token_object_start:
-			state = kSBJsonStreamParserStateObjectStart;
-			break;
-			
-		case sbjson_token_array_end:
-		case sbjson_token_object_end:
-			if (parser.multi)
-				state = parser.states[parser.depth];
-			else
-				state = kSBJsonStreamParserStateComplete;
-			break;
-			
-		case sbjson_token_eof:
-			return;
-			
-		default:
-			state = kSBJsonStreamParserStateError;
-			break;
-	}
-	
-	
-	parser.states[parser.depth] = state;
+    SBJsonStreamParserState *state = nil;
+    switch (tok) {
+        case sbjson_token_array_start:
+            state = kSBJsonStreamParserStateArrayStart;
+            break;
+
+        case sbjson_token_object_start:
+            state = kSBJsonStreamParserStateObjectStart;
+            break;
+
+        case sbjson_token_array_end:
+        case sbjson_token_object_end:
+            if (parser.multi)
+                state = parser.states[parser.depth];
+            else
+                state = kSBJsonStreamParserStateComplete;
+            break;
+
+        case sbjson_token_eof:
+            return;
+
+        default:
+            state = kSBJsonStreamParserStateError;
+            break;
+    }
+
+
+    parser.states[parser.depth] = state;
 }
 
 - (NSString*)name { return @"before outer-most array or object"; }
@@ -141,11 +141,11 @@ static SBJsonStreamParserState *kSBJsonStreamParserStateArrayNeedValue;
 - (NSString*)name { return @"after outer-most array or object"; }
 
 - (BOOL)parserShouldStop:(SBJsonStreamParser*)parser {
-	return YES;
+    return YES;
 }
 
 - (SBJsonStreamParserStatus)parserShouldReturn:(SBJsonStreamParser*)parser {
-	return SBJsonStreamParserComplete;
+    return SBJsonStreamParserComplete;
 }
 
 @end
@@ -157,11 +157,11 @@ static SBJsonStreamParserState *kSBJsonStreamParserStateArrayNeedValue;
 - (NSString*)name { return @"in error"; }
 
 - (BOOL)parserShouldStop:(SBJsonStreamParser*)parser {
-	return YES;
+    return YES;
 }
 
 - (SBJsonStreamParserStatus)parserShouldReturn:(SBJsonStreamParser*)parser {
-	return SBJsonStreamParserError;
+    return SBJsonStreamParserError;
 }
 
 @end
@@ -173,24 +173,24 @@ static SBJsonStreamParserState *kSBJsonStreamParserStateArrayNeedValue;
 - (NSString*)name { return @"at beginning of object"; }
 
 - (BOOL)parser:(SBJsonStreamParser*)parser shouldAcceptToken:(sbjson_token_t)token {
-	switch (token) {
-		case sbjson_token_object_end:
-		case sbjson_token_string:
-		case sbjson_token_string_encoded:
-			return YES;
-			break;
-		default:
-			return NO;
-			break;
-	}
+    switch (token) {
+        case sbjson_token_object_end:
+        case sbjson_token_string:
+        case sbjson_token_string_encoded:
+            return YES;
+            break;
+        default:
+            return NO;
+            break;
+    }
 }
 
 - (void)parser:(SBJsonStreamParser*)parser shouldTransitionTo:(sbjson_token_t)tok {
-	parser.states[parser.depth] = kSBJsonStreamParserStateObjectGotKey;
+    parser.states[parser.depth] = kSBJsonStreamParserStateObjectGotKey;
 }
 
 - (BOOL)needKey {
-	return YES;
+    return YES;
 }
 
 @end
@@ -202,11 +202,11 @@ static SBJsonStreamParserState *kSBJsonStreamParserStateArrayNeedValue;
 - (NSString*)name { return @"after object key"; }
 
 - (BOOL)parser:(SBJsonStreamParser*)parser shouldAcceptToken:(sbjson_token_t)token {
-	return token == sbjson_token_key_value_separator;
+    return token == sbjson_token_key_value_separator;
 }
 
 - (void)parser:(SBJsonStreamParser*)parser shouldTransitionTo:(sbjson_token_t)tok {
-	parser.states[parser.depth] = kSBJsonStreamParserStateObjectSeparator;
+    parser.states[parser.depth] = kSBJsonStreamParserStateObjectSeparator;
 }
 
 @end
@@ -218,27 +218,27 @@ static SBJsonStreamParserState *kSBJsonStreamParserStateArrayNeedValue;
 - (NSString*)name { return @"as object value"; }
 
 - (BOOL)parser:(SBJsonStreamParser*)parser shouldAcceptToken:(sbjson_token_t)token {
-	switch (token) {
-		case sbjson_token_object_start:
-		case sbjson_token_array_start:
-		case sbjson_token_true:
-		case sbjson_token_false:
-		case sbjson_token_null:
-		case sbjson_token_integer:
-		case sbjson_token_double:
-		case sbjson_token_string:
-		case sbjson_token_string_encoded:
-			return YES;
-			break;
+    switch (token) {
+        case sbjson_token_object_start:
+        case sbjson_token_array_start:
+        case sbjson_token_true:
+        case sbjson_token_false:
+        case sbjson_token_null:
+        case sbjson_token_integer:
+        case sbjson_token_double:
+        case sbjson_token_string:
+        case sbjson_token_string_encoded:
+            return YES;
+            break;
 
-		default:
-			return NO;
-			break;
-	}
+        default:
+            return NO;
+            break;
+    }
 }
 
 - (void)parser:(SBJsonStreamParser*)parser shouldTransitionTo:(sbjson_token_t)tok {
-	parser.states[parser.depth] = kSBJsonStreamParserStateObjectGotValue;
+    parser.states[parser.depth] = kSBJsonStreamParserStateObjectGotValue;
 }
 
 @end
@@ -250,19 +250,19 @@ static SBJsonStreamParserState *kSBJsonStreamParserStateArrayNeedValue;
 - (NSString*)name { return @"after object value"; }
 
 - (BOOL)parser:(SBJsonStreamParser*)parser shouldAcceptToken:(sbjson_token_t)token {
-	switch (token) {
-		case sbjson_token_object_end:
-		case sbjson_token_separator:
-			return YES;
-			break;
-		default:
-			return NO;
-			break;
-	}
+    switch (token) {
+        case sbjson_token_object_end:
+        case sbjson_token_separator:
+            return YES;
+            break;
+        default:
+            return NO;
+            break;
+    }
 }
 
 - (void)parser:(SBJsonStreamParser*)parser shouldTransitionTo:(sbjson_token_t)tok {
-	parser.states[parser.depth] = kSBJsonStreamParserStateObjectNeedKey;
+    parser.states[parser.depth] = kSBJsonStreamParserStateObjectNeedKey;
 }
 
 
@@ -275,23 +275,23 @@ static SBJsonStreamParserState *kSBJsonStreamParserStateArrayNeedValue;
 - (NSString*)name { return @"in place of object key"; }
 
 - (BOOL)parser:(SBJsonStreamParser*)parser shouldAcceptToken:(sbjson_token_t)token {
-	switch (token) {
-		case sbjson_token_string:
-		case sbjson_token_string_encoded:
-			return YES;
-			break;
-		default:
-			return NO;
-			break;
-	}
+    switch (token) {
+        case sbjson_token_string:
+        case sbjson_token_string_encoded:
+            return YES;
+            break;
+        default:
+            return NO;
+            break;
+    }
 }
 
 - (void)parser:(SBJsonStreamParser*)parser shouldTransitionTo:(sbjson_token_t)tok {
-	parser.states[parser.depth] = kSBJsonStreamParserStateObjectGotKey;
+    parser.states[parser.depth] = kSBJsonStreamParserStateObjectGotKey;
 }
 
 - (BOOL)needKey {
-	return YES;
+    return YES;
 }
 
 @end
@@ -303,21 +303,21 @@ static SBJsonStreamParserState *kSBJsonStreamParserStateArrayNeedValue;
 - (NSString*)name { return @"at array start"; }
 
 - (BOOL)parser:(SBJsonStreamParser*)parser shouldAcceptToken:(sbjson_token_t)token {
-	switch (token) {
-		case sbjson_token_object_end:
-		case sbjson_token_key_value_separator:
-		case sbjson_token_separator:
-			return NO;
-			break;
-			
-		default:
-			return YES;
-			break;
-	}
+    switch (token) {
+        case sbjson_token_object_end:
+        case sbjson_token_key_value_separator:
+        case sbjson_token_separator:
+            return NO;
+            break;
+
+        default:
+            return YES;
+            break;
+    }
 }
 
 - (void)parser:(SBJsonStreamParser*)parser shouldTransitionTo:(sbjson_token_t)tok {
-	parser.states[parser.depth] = kSBJsonStreamParserStateArrayGotValue;
+    parser.states[parser.depth] = kSBJsonStreamParserStateArrayGotValue;
 }
 
 @end
@@ -330,12 +330,12 @@ static SBJsonStreamParserState *kSBJsonStreamParserStateArrayNeedValue;
 
 
 - (BOOL)parser:(SBJsonStreamParser*)parser shouldAcceptToken:(sbjson_token_t)token {
-	return token == sbjson_token_array_end || token == sbjson_token_separator;
+    return token == sbjson_token_array_end || token == sbjson_token_separator;
 }
 
 - (void)parser:(SBJsonStreamParser*)parser shouldTransitionTo:(sbjson_token_t)tok {
-	if (tok == sbjson_token_separator)
-		parser.states[parser.depth] = kSBJsonStreamParserStateArrayNeedValue;
+    if (tok == sbjson_token_separator)
+        parser.states[parser.depth] = kSBJsonStreamParserStateArrayNeedValue;
 }
 
 @end
@@ -348,23 +348,22 @@ static SBJsonStreamParserState *kSBJsonStreamParserStateArrayNeedValue;
 
 
 - (BOOL)parser:(SBJsonStreamParser*)parser shouldAcceptToken:(sbjson_token_t)token {
-	switch (token) {
-		case sbjson_token_array_end:
-		case sbjson_token_key_value_separator:
-		case sbjson_token_object_end:
-		case sbjson_token_separator:
-			return NO;
-			break;
+    switch (token) {
+        case sbjson_token_array_end:
+        case sbjson_token_key_value_separator:
+        case sbjson_token_object_end:
+        case sbjson_token_separator:
+            return NO;
+            break;
 
-		default:
-			return YES;
-			break;
-	}
+        default:
+            return YES;
+            break;
+    }
 }
 
 - (void)parser:(SBJsonStreamParser*)parser shouldTransitionTo:(sbjson_token_t)tok {
-	parser.states[parser.depth] = kSBJsonStreamParserStateArrayGotValue;
+    parser.states[parser.depth] = kSBJsonStreamParserStateArrayGotValue;
 }
 
 @end
-

@@ -1,22 +1,22 @@
 /*
  Copyright (c) 2010, Stig Brautaset.
  All rights reserved.
- 
+
  Redistribution and use in source and binary forms, with or without
  modification, are permitted provided that the following conditions are
  met:
- 
+
    Redistributions of source code must retain the above copyright
    notice, this list of conditions and the following disclaimer.
-  
+
    Redistributions in binary form must reproduce the above copyright
    notice, this list of conditions and the following disclaimer in the
    documentation and/or other materials provided with the distribution.
- 
+
    Neither the name of the the author nor the names of its contributors
    may be used to endorse or promote products derived from this software
    without specific prior written permission.
- 
+
  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS
  IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED
  TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A
@@ -37,15 +37,15 @@
 @class SBJsonStreamParserState;
 
 typedef enum {
-	SBJsonStreamParserComplete,
-	SBJsonStreamParserWaitingForData,
-	SBJsonStreamParserError,
+    SBJsonStreamParserComplete,
+    SBJsonStreamParserWaitingForData,
+    SBJsonStreamParserError,
 } SBJsonStreamParserStatus;
 
 
 /**
  @brief Delegate for interacting directly with the stream parser
- 
+
  You will most likely find it much more convenient to implement the
  SBJsonStreamParserAdapterDelegate protocol instead.
  */
@@ -84,15 +84,15 @@ typedef enum {
 
 /**
  @brief JSON Stream-parser class
- 
+
  */
 @interface SBJsonStreamParser : NSObject {
-	BOOL multi;
-	id<SBJsonStreamParserDelegate> delegate;
-	SBJsonTokeniser *tokeniser;
-	SBJsonStreamParserState **states;
-	NSUInteger depth, maxDepth;
-	NSString *error;
+    BOOL multi;
+    id<SBJsonStreamParserDelegate> delegate;
+    SBJsonTokeniser *tokeniser;
+    SBJsonStreamParserState **states;
+    NSUInteger depth, maxDepth;
+    NSString *error;
 }
 
 /**
@@ -122,14 +122,14 @@ typedef enum {
 
 /**
  @brief Parse some JSON
- 
+
  The JSON is assumed to be UTF8 encoded. This can be a full JSON document, or a part of one.
- 
- @return 
+
+ @return
  @li SBJsonStreamParserComplete if a full document was found
  @li SBJsonStreamParserWaitingForData if a partial document was found and more data is required to complete it
  @li SBJsonStreamParserError if an error occured. (See the error property for details in this case.)
- 
+
  */
 - (SBJsonStreamParserStatus)parse:(NSData*)data;
 

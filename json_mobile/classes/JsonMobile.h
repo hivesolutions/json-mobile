@@ -25,7 +25,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface JsonMobile : NSObject {    
+@interface JsonMobile : NSObject {
 }
 
 - (void)hello;
