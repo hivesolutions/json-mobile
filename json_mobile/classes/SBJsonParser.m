@@ -58,7 +58,10 @@
 }
 
 - (void)dealloc {
+    // releases the error
     [error release];
+
+    // calls the super
     [super dealloc];
 }
 
