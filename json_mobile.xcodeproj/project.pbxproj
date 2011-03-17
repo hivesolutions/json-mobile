@@ -274,7 +274,6 @@
 		C2935BA6132AD9A600B39BE2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
 				DSTROOT = /tmp/json_mobile.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "json_mobile/support/json_mobile-Prefix.pch";
@@ -286,7 +285,6 @@
 		C2935BA7132AD9A600B39BE2 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
 				DSTROOT = /tmp/json_mobile.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "json_mobile/support/json_mobile-Prefix.pch";
