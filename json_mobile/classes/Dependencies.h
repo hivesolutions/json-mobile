@@ -23,6 +23,5 @@
 // __copyright__ = Copyright (c) 2008 Hive Solutions Lda.
 // __license__   = GNU General Public License (GPL), Version 3
 
-#ifdef __OBJC__
-    #import "../headers/json_mobile.h"
-#endif
+// framework dependency includes
+#import <Foundation/Foundation.h>

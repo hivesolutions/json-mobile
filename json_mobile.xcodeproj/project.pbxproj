@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C20CDB87133376F3008A4FE3 /* Dependencies.h in Headers */ = {isa = PBXBuildFile; fileRef = C20CDB86133376F3008A4FE3 /* Dependencies.h */; };
 		C20DE8DD132BC6D50028EAD7 /* JSON.h in Headers */ = {isa = PBXBuildFile; fileRef = C20DE8CA132BC6D30028EAD7 /* JSON.h */; };
 		C20DE8DE132BC6D50028EAD7 /* NSObject+JSON.h in Headers */ = {isa = PBXBuildFile; fileRef = C20DE8CB132BC6D30028EAD7 /* NSObject+JSON.h */; };
 		C20DE8DF132BC6D50028EAD7 /* NSObject+JSON.m in Sources */ = {isa = PBXBuildFile; fileRef = C20DE8CC132BC6D30028EAD7 /* NSObject+JSON.m */; };
@@ -34,6 +35,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C20CDB86133376F3008A4FE3 /* Dependencies.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Dependencies.h; path = classes/Dependencies.h; sourceTree = "<group>"; };
 		C20DE8CA132BC6D30028EAD7 /* JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSON.h; path = classes/JSON.h; sourceTree = "<group>"; };
 		C20DE8CB132BC6D30028EAD7 /* NSObject+JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSObject+JSON.h"; path = "classes/NSObject+JSON.h"; sourceTree = "<group>"; };
 		C20DE8CC132BC6D30028EAD7 /* NSObject+JSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSObject+JSON.m"; path = "classes/NSObject+JSON.m"; sourceTree = "<group>"; };
@@ -73,6 +75,56 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C20CDB80133376A8008A4FE3 /* Parser */ = {
+			isa = PBXGroup;
+			children = (
+				C20DE8CD132BC6D30028EAD7 /* SBJsonParser.h */,
+				C20DE8CE132BC6D30028EAD7 /* SBJsonParser.m */,
+				C20DE8CF132BC6D30028EAD7 /* SBJsonStreamParser.h */,
+				C20DE8D0132BC6D30028EAD7 /* SBJsonStreamParser.m */,
+				C20DE8D1132BC6D30028EAD7 /* SBJsonStreamParserAdapter.h */,
+				C20DE8D2132BC6D30028EAD7 /* SBJsonStreamParserAdapter.m */,
+				C20DE8D3132BC6D30028EAD7 /* SBJsonStreamParserState.h */,
+				C20DE8D4132BC6D30028EAD7 /* SBJsonStreamParserState.m */,
+			);
+			name = Parser;
+			sourceTree = "<group>";
+		};
+		C20CDB83133376C5008A4FE3 /* Writer */ = {
+			isa = PBXGroup;
+			children = (
+				C20DE8D5132BC6D30028EAD7 /* SBJsonStreamWriter.h */,
+				C20DE8D6132BC6D30028EAD7 /* SBJsonStreamWriter.m */,
+				C20DE8D7132BC6D30028EAD7 /* SBJsonStreamWriterState.h */,
+				C20DE8D8132BC6D40028EAD7 /* SBJsonStreamWriterState.m */,
+				C20DE8DB132BC6D40028EAD7 /* SBJsonWriter.h */,
+				C20DE8DC132BC6D40028EAD7 /* SBJsonWriter.m */,
+			);
+			name = Writer;
+			sourceTree = "<group>";
+		};
+		C20CDB84133376D9008A4FE3 /* Global */ = {
+			isa = PBXGroup;
+			children = (
+				C20DE8CA132BC6D30028EAD7 /* JSON.h */,
+				C20DE8CB132BC6D30028EAD7 /* NSObject+JSON.h */,
+				C20DE8CC132BC6D30028EAD7 /* NSObject+JSON.m */,
+				C20DE8D9132BC6D40028EAD7 /* SBJsonTokeniser.h */,
+				C20DE8DA132BC6D40028EAD7 /* SBJsonTokeniser.m */,
+				C2B4DFBC132BB1D40067264D /* JsonMobile.h */,
+				C2B4DFBD132BB1D40067264D /* JsonMobile.m */,
+			);
+			name = Global;
+			sourceTree = "<group>";
+		};
+		C20CDB85133376E8008A4FE3 /* Dependencies */ = {
+			isa = PBXGroup;
+			children = (
+				C20CDB86133376F3008A4FE3 /* Dependencies.h */,
+			);
+			name = Dependencies;
+			sourceTree = "<group>";
+		};
 		C23F3D7B132E5668003155EE /* Headers */ = {
 			isa = PBXGroup;
 			children = (
@@ -128,27 +180,10 @@
 		C2B4DFBB132BB1C60067264D /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				C20DE8CA132BC6D30028EAD7 /* JSON.h */,
-				C20DE8CB132BC6D30028EAD7 /* NSObject+JSON.h */,
-				C20DE8CC132BC6D30028EAD7 /* NSObject+JSON.m */,
-				C20DE8CD132BC6D30028EAD7 /* SBJsonParser.h */,
-				C20DE8CE132BC6D30028EAD7 /* SBJsonParser.m */,
-				C20DE8CF132BC6D30028EAD7 /* SBJsonStreamParser.h */,
-				C20DE8D0132BC6D30028EAD7 /* SBJsonStreamParser.m */,
-				C20DE8D1132BC6D30028EAD7 /* SBJsonStreamParserAdapter.h */,
-				C20DE8D2132BC6D30028EAD7 /* SBJsonStreamParserAdapter.m */,
-				C20DE8D3132BC6D30028EAD7 /* SBJsonStreamParserState.h */,
-				C20DE8D4132BC6D30028EAD7 /* SBJsonStreamParserState.m */,
-				C20DE8D5132BC6D30028EAD7 /* SBJsonStreamWriter.h */,
-				C20DE8D6132BC6D30028EAD7 /* SBJsonStreamWriter.m */,
-				C20DE8D7132BC6D30028EAD7 /* SBJsonStreamWriterState.h */,
-				C20DE8D8132BC6D40028EAD7 /* SBJsonStreamWriterState.m */,
-				C20DE8D9132BC6D40028EAD7 /* SBJsonTokeniser.h */,
-				C20DE8DA132BC6D40028EAD7 /* SBJsonTokeniser.m */,
-				C20DE8DB132BC6D40028EAD7 /* SBJsonWriter.h */,
-				C20DE8DC132BC6D40028EAD7 /* SBJsonWriter.m */,
-				C2B4DFBC132BB1D40067264D /* JsonMobile.h */,
-				C2B4DFBD132BB1D40067264D /* JsonMobile.m */,
+				C20CDB85133376E8008A4FE3 /* Dependencies */,
+				C20CDB84133376D9008A4FE3 /* Global */,
+				C20CDB83133376C5008A4FE3 /* Writer */,
+				C20CDB80133376A8008A4FE3 /* Parser */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -173,6 +208,7 @@
 				C20DE8EC132BC6D50028EAD7 /* SBJsonTokeniser.h in Headers */,
 				C20DE8EE132BC6D50028EAD7 /* SBJsonWriter.h in Headers */,
 				C23F3D7E132E5688003155EE /* json_mobile.h in Headers */,
+				C20CDB87133376F3008A4FE3 /* Dependencies.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
