@@ -23,4 +23,5 @@
 // __copyright__ = Copyright (c) 2008 Hive Solutions Lda.
 // __license__   = GNU General Public License (GPL), Version 3
 
+// class includes
 #import "../classes/JSON.h"
