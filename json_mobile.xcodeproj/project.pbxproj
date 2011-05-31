@@ -35,6 +35,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C209221E139553F000CDE3F1 /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
 		C20CDB86133376F3008A4FE3 /* Dependencies.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Dependencies.h; path = classes/Dependencies.h; sourceTree = "<group>"; };
 		C20DE8CA132BC6D30028EAD7 /* JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSON.h; path = classes/JSON.h; sourceTree = "<group>"; };
 		C20DE8CB132BC6D30028EAD7 /* NSObject+JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSObject+JSON.h"; path = "classes/NSObject+JSON.h"; sourceTree = "<group>"; };
@@ -75,6 +76,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C209222113955AA100CDE3F1 /* Extras */ = {
+			isa = PBXGroup;
+			children = (
+				C209221E139553F000CDE3F1 /* Entitlements.plist */,
+			);
+			name = Extras;
+			sourceTree = "<group>";
+		};
 		C20CDB80133376A8008A4FE3 /* Parser */ = {
 			isa = PBXGroup;
 			children = (
@@ -139,6 +148,7 @@
 				C2935BA0132AD9A600B39BE2 /* Json Mobile */,
 				C2935B9D132AD9A600B39BE2 /* Frameworks */,
 				C2935B9C132AD9A600B39BE2 /* Products */,
+				C209222113955AA100CDE3F1 /* Extras */,
 			);
 			sourceTree = "<group>";
 		};
@@ -278,6 +288,32 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
+		C20922151395508000CDE3F1 /* Ad Hoc */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = "Ad Hoc";
+		};
+		C20922161395508000CDE3F1 /* Ad Hoc */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
+				DSTROOT = /tmp/json_mobile.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "json_mobile/support/json_mobile-Prefix.pch";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = "Ad Hoc";
+		};
 		C2935BA3132AD9A600B39BE2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -339,6 +375,7 @@
 			buildConfigurations = (
 				C2935BA3132AD9A600B39BE2 /* Debug */,
 				C2935BA4132AD9A600B39BE2 /* Release */,
+				C20922151395508000CDE3F1 /* Ad Hoc */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -348,6 +385,7 @@
 			buildConfigurations = (
 				C2935BA6132AD9A600B39BE2 /* Debug */,
 				C2935BA7132AD9A600B39BE2 /* Release */,
+				C20922161395508000CDE3F1 /* Ad Hoc */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
