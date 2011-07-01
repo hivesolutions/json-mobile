@@ -62,7 +62,7 @@
 
 - (id)init {
     self = [super init];
-    if (self) {
+    if(self) {
         tokenStart = tokenLength = 0;
         buf = [[NSMutableData alloc] initWithCapacity:4096];
         illegalCharacterSet = [[NSCharacterSet illegalCharacterSet] copy];
@@ -82,10 +82,10 @@
 - (void)appendData:(NSData *)data {
 
     // Remove previous NUL char
-    if (buf.length)
+    if(buf.length)
         buf.length = buf.length - 1;
 
-    if (tokenStart) {
+    if(tokenStart) {
         // Remove stuff in the front of the offset
         [buf replaceBytesInRange:NSMakeRange(0, tokenStart) withBytes:"" length:0];
         tokenStart = 0;
@@ -101,7 +101,7 @@
 }
 
 - (BOOL)getToken:(const char **)utf8 length:(NSUInteger *)len {
-    if (!tokenLength)
+    if(!tokenLength)
         return NO;
 
     *len = tokenLength;
@@ -271,10 +271,10 @@ again: while (i < len) {
 }
 
 - (sbjson_token_t)match:(const char *)utf8 ofLength:(NSUInteger)len andReturn:(sbjson_token_t)tok {
-    if (buf.length - tokenStart - 1 < len)
+    if(buf.length - tokenStart - 1 < len)
         return sbjson_token_eof;
 
-    if (strncmp(bufbytes + tokenStart, utf8, len)) {
+    if(strncmp(bufbytes + tokenStart, utf8, len)) {
         NSString *format = [NSString stringWithFormat:@"Expected '%%s' but found '%%.%us'.", len];
         self.error = [NSString stringWithFormat:format, utf8, bufbytes + tokenStart];
         return sbjson_token_error;
@@ -318,29 +318,29 @@ again: while (i < len) {
 
 - (int)parseUnicodeEscape:(const char *)bytes index:(NSUInteger *)index {
     int hi = [self decodeHexQuad:bytes + *index];
-    if (hi == -2) return -2; // EOF
-    if (hi < 0) {
+    if(hi == -2) return -2; // EOF
+    if(hi < 0) {
         self.error = @"Missing hex quad";
         return -1;
     }
     *index += 4;
 
-    if (CFStringIsSurrogateHighCharacter(hi)) {
+    if(CFStringIsSurrogateHighCharacter(hi)) {
         int lo = -1;
-        if (bytes[(*index)++] == '\\' && bytes[(*index)++] == 'u')
+        if(bytes[(*index)++] == '\\' && bytes[(*index)++] == 'u')
             lo = [self decodeHexQuad:bytes + *index];
 
-        if (lo < 0) {
+        if(lo < 0) {
             self.error = @"Missing low character in surrogate pair";
             return -1;
         }
         *index += 4;
 
-        if (!CFStringIsSurrogateLowCharacter(lo)) {
+        if(!CFStringIsSurrogateLowCharacter(lo)) {
             self.error = @"Invalid low surrogate char";
             return -1;
         }
-    } else if (SBStringIsIllegalSurrogateHighCharacter(hi)) {
+    } else if(SBStringIsIllegalSurrogateHighCharacter(hi)) {
         self.error = @"Invalid high character in surrogate pair";
         return -1;
     }
@@ -355,18 +355,18 @@ again: while (i < len) {
     // increments the index by four
     *index += 4;
 
-    if (CFStringIsSurrogateHighCharacter(hi)) {     // high surrogate char?
+    if(CFStringIsSurrogateHighCharacter(hi)) {     // high surrogate char?
         int lo = -1;
-        if (bytes[(*index)++] == '\\' && bytes[(*index)++] == 'u')
+        if(bytes[(*index)++] == '\\' && bytes[(*index)++] == 'u')
             lo = [self decodeHexQuad:bytes + *index];
 
-        if (lo < 0) {
+        if(lo < 0) {
             self.error = @"Missing low character in surrogate pair";
             return nil;
         }
         *index += 4;
 
-        if (!CFStringIsSurrogateLowCharacter(lo)) {
+        if(!CFStringIsSurrogateLowCharacter(lo)) {
             self.error = @"Invalid low surrogate char";
             return nil;
         }
@@ -374,7 +374,7 @@ again: while (i < len) {
         unichar pair[2] = {hi, lo};
         return [NSString stringWithCharacters:pair length:2];
 
-    } else if (SBStringIsIllegalSurrogateHighCharacter(hi)) {
+    } else if(SBStringIsIllegalSurrogateHighCharacter(hi)) {
         self.error = @"Invalid high character in surrogate pair";
         return nil;
     }
@@ -400,7 +400,7 @@ again: while (i < len) {
             case '\\':
                 ret = sbjson_token_string_encoded;
 
-                if (idx >= maxIdx)
+                if(idx >= maxIdx)
                     return sbjson_token_eof;
 
                 switch (bytes[idx++]) {
@@ -418,9 +418,9 @@ again: while (i < len) {
 
                     case 'u': {
                         int ch = [self parseUnicodeEscape:bytes index:&idx];
-                        if (ch == -2)
+                        if(ch == -2)
                             return sbjson_token_eof;
-                        if (ch == -1)
+                        if(ch == -1)
                             return sbjson_token_error;
                         break;
                     }
@@ -450,17 +450,17 @@ again: while (i < len) {
     sbjson_token_t ret = sbjson_token_integer;
     const char *c = bufbytes + tokenStart;
 
-    if (*c == '-') {
+    if(*c == '-') {
         c++;
-        if (!isDigit(c)) {
+        if(!isDigit(c)) {
             self.error = @"No digits after initial minus";
             return sbjson_token_error;
         }
     }
 
-    if (*c == '0') {
+    if(*c == '0') {
         c++;
-        if (isDigit(c)) {
+        if(isDigit(c)) {
             self.error = [NSString stringWithFormat:@"Leading zero is illegal in number at offset %u", tokenStart];
             return sbjson_token_error;
         }
@@ -469,11 +469,11 @@ again: while (i < len) {
     skipDigits(c);
 
 
-    if (*c == '.') {
+    if(*c == '.') {
         ret = sbjson_token_double;
         c++;
 
-        if (!isDigit(c) && *c) {
+        if(!isDigit(c) && *c) {
             self.error = [NSString stringWithFormat:@"No digits after decimal point at offset %u", tokenStart];
             return sbjson_token_error;
         }
@@ -481,14 +481,14 @@ again: while (i < len) {
         skipDigits(c);
     }
 
-    if (*c == 'e' || *c == 'E') {
+    if(*c == 'e' || *c == 'E') {
         ret = sbjson_token_double;
         c++;
 
-        if (*c == '-' || *c == '+')
+        if(*c == '-' || *c == '+')
             c++;
 
-        if (!isDigit(c) && *c) {
+        if(!isDigit(c) && *c) {
             self.error = [NSString stringWithFormat:@"No digits after exponent mark at offset %u", tokenStart];
             return sbjson_token_error;
         }
@@ -496,7 +496,7 @@ again: while (i < len) {
         skipDigits(c);
     }
 
-    if (!*c)
+    if(!*c)
         return sbjson_token_eof;
 
     tokenLength = c - (bufbytes + tokenStart);

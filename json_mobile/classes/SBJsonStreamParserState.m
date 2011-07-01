@@ -78,7 +78,7 @@ static SBJsonStreamParserState *kSBJsonStreamParserStateArrayNeedValue;
 @implementation SBJsonStreamParserStateStart
 
 + (id)sharedInstance {
-    if (!kSBJsonStreamParserStateStart) {
+    if(!kSBJsonStreamParserStateStart) {
         kSBJsonStreamParserStateStart = [[SBJsonStreamParserStateStart alloc] init];
         kSBJsonStreamParserStateError = [[SBJsonStreamParserStateError alloc] init];
         kSBJsonStreamParserStateComplete = [[SBJsonStreamParserStateComplete alloc] init];
@@ -112,7 +112,7 @@ static SBJsonStreamParserState *kSBJsonStreamParserStateArrayNeedValue;
 
         case sbjson_token_array_end:
         case sbjson_token_object_end:
-            if (parser.multi)
+            if(parser.multi)
                 state = parser.states[parser.depth];
             else
                 state = kSBJsonStreamParserStateComplete;
@@ -334,7 +334,7 @@ static SBJsonStreamParserState *kSBJsonStreamParserStateArrayNeedValue;
 }
 
 - (void)parser:(SBJsonStreamParser*)parser shouldTransitionTo:(sbjson_token_t)tok {
-    if (tok == sbjson_token_separator)
+    if(tok == sbjson_token_separator)
         parser.states[parser.depth] = kSBJsonStreamParserStateArrayNeedValue;
 }
 

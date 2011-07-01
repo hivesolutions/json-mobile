@@ -52,7 +52,7 @@
 
 - (id)init {
     self = [super init];
-    if (self)
+    if(self)
         self.maxDepth = 512;
     return self;
 }
@@ -69,7 +69,7 @@
 
 - (id)objectWithData:(NSData *)data {
 
-    if (!data) {
+    if(!data) {
         self.error = @"Input was 'nil'";
         return nil;
     }
@@ -110,10 +110,10 @@
 
 - (id)objectWithString:(NSString*)repr error:(NSError**)error_ {
     id tmp = [self objectWithString:repr];
-    if (tmp)
+    if(tmp)
         return tmp;
 
-    if (error_) {
+    if(error_) {
         NSDictionary *ui = [NSDictionary dictionaryWithObjectsAndKeys:error, NSLocalizedDescriptionKey, nil];
         *error_ = [NSError errorWithDomain:@"org.brautaset.json.parser.ErrorDomain" code:0 userInfo:ui];
     }

@@ -48,7 +48,7 @@
 
 - (id)init {
     self = [super init];
-    if (self) {
+    if(self) {
         tokeniser = [SBJsonTokeniser new];
         maxDepth = 512;
         states = calloc(maxDepth, sizeof(SBJsonStreamParserState*));
@@ -122,12 +122,12 @@
 
 
 - (void)handleObjectStart {
-    if (depth >= maxDepth) {
+    if(depth >= maxDepth) {
         self.error = [NSString stringWithFormat:@"Parser exceeded max depth of %lu", maxDepth];
         states[depth] = kSBJsonStreamParserStateError;
 
     } else {
-        if (delegate && [delegate respondsToSelector:@selector(parserFoundObjectStart:)]) {
+        if(delegate && [delegate respondsToSelector:@selector(parserFoundObjectStart:)]) {
             [delegate parserFoundObjectStart:self];
         }
         states[++depth] = kSBJsonStreamParserStateObjectStart;
@@ -135,12 +135,12 @@
 
 }
 - (void)handleArrayStart {
-    if (depth >= maxDepth) {
+    if(depth >= maxDepth) {
         self.error = [NSString stringWithFormat:@"Parser exceeded max depth of %lu", maxDepth];
         states[depth] = kSBJsonStreamParserStateError;
     } else {
 
-        if (delegate && [delegate respondsToSelector:@selector(parserFoundArrayStart:)]) {
+        if(delegate && [delegate respondsToSelector:@selector(parserFoundArrayStart:)]) {
             [delegate parserFoundArrayStart:self];
         }
         states[++depth] = kSBJsonStreamParserStateArrayStart;
@@ -152,15 +152,15 @@
     const char *buf;
     NSUInteger len;
 
-    if ([tokeniser getToken:&buf length:&len]) {
+    if([tokeniser getToken:&buf length:&len]) {
         NSNumber *number;
-        if (tok == sbjson_token_integer && len < 12) {
+        if(tok == sbjson_token_integer && len < 12) {
             char *e = NULL;
             long l = strtol(buf, &e, 0);
             NSAssert((e-buf) == len, @"unexpected length");
             number = [NSNumber numberWithLong:l];
 
-        } else if (tok == sbjson_token_double && len < 7) {
+        } else if(tok == sbjson_token_double && len < 7) {
             char *e = NULL;
             double d = strtod(buf, &e);
             NSAssert((e-buf) == len, @"unexpected length");
@@ -172,7 +172,7 @@
             number = [[[NSDecimalNumber alloc] initWithString:string] autorelease];
         }
         NSParameterAssert(number);
-        if (delegate && [delegate respondsToSelector:@selector(parser:foundNumber:)]) {
+        if(delegate && [delegate respondsToSelector:@selector(parser:foundNumber:)]) {
             [delegate parser:self foundNumber:number];
         }
 
@@ -184,20 +184,20 @@
     NSUInteger len;
 
     NSString *string;
-    if (tok == sbjson_token_string) {
+    if(tok == sbjson_token_string) {
         [tokeniser getToken:&buf length:&len];
         string = [[[NSString alloc] initWithBytes:buf+1 length:len-2 encoding:NSUTF8StringEncoding] autorelease];
     } else {
         string = [tokeniser getDecodedStringToken];
     }
     NSParameterAssert(string);
-    if ([states[depth] needKey]) {
-        if (delegate && [delegate respondsToSelector:@selector(parser:foundObjectKey:)]) {
+    if([states[depth] needKey]) {
+        if(delegate && [delegate respondsToSelector:@selector(parser:foundObjectKey:)]) {
             [delegate parser:self foundObjectKey:string];
         }
     }
     else {
-        if (delegate && [delegate respondsToSelector:@selector(parser:foundString:)]) {
+        if(delegate && [delegate respondsToSelector:@selector(parser:foundString:)]) {
             [delegate parser:self foundString:string];
         }
     }
@@ -208,7 +208,7 @@
 
 
     for (;;) {
-        if ([states[depth] parserShouldStop:self])
+        if([states[depth] parserShouldStop:self])
             return [states[depth] parserShouldReturn:self];
 
         sbjson_token_t tok = [tokeniser next];
@@ -226,7 +226,7 @@
 
             default:
 
-                if (![states[depth] parser:self shouldAcceptToken:tok]) {
+                if(![states[depth] parser:self shouldAcceptToken:tok]) {
                     NSString *tokenName = [self tokenName:tok];
                     NSString *stateName = [states[depth] name];
                     NSLog(@"STATE: %@", states[depth]);
@@ -242,7 +242,7 @@
 
                     case sbjson_token_object_end:
                         [states[--depth] parser:self shouldTransitionTo:tok];
-                        if (delegate && [delegate respondsToSelector:@selector(parserFoundObjectEnd:)]) {
+                        if(delegate && [delegate respondsToSelector:@selector(parserFoundObjectEnd:)]) {
                             [delegate parserFoundObjectEnd:self];
                         }
                         break;
@@ -253,7 +253,7 @@
 
                     case sbjson_token_array_end:
                         [states[--depth] parser:self shouldTransitionTo:tok];
-                        if (delegate && [delegate respondsToSelector:@selector(parserFoundArrayEnd:)]) {
+                        if(delegate && [delegate respondsToSelector:@selector(parserFoundArrayEnd:)]) {
                             [delegate parserFoundArrayEnd:self];
                         }
                         break;
@@ -264,21 +264,21 @@
                         break;
 
                     case sbjson_token_true:
-                        if (delegate && [delegate respondsToSelector:@selector(parser:foundBoolean:)]) {
+                        if(delegate && [delegate respondsToSelector:@selector(parser:foundBoolean:)]) {
                             [delegate parser:self foundBoolean:YES];
                         }
                         [states[depth] parser:self shouldTransitionTo:tok];
                         break;
 
                     case sbjson_token_false:
-                        if (delegate && [delegate respondsToSelector:@selector(parser:foundBoolean:)]) {
+                        if(delegate && [delegate respondsToSelector:@selector(parser:foundBoolean:)]) {
                             [delegate parser:self foundBoolean:NO];
                         }
                         [states[depth] parser:self shouldTransitionTo:tok];
                         break;
 
                     case sbjson_token_null:
-                        if (delegate && [delegate respondsToSelector:@selector(parserFoundNull:)]) {
+                        if(delegate && [delegate respondsToSelector:@selector(parserFoundNull:)]) {
                             [delegate parserFoundNull:self];
                         }
                         [states[depth] parser:self shouldTransitionTo:tok];

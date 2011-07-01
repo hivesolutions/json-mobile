@@ -100,7 +100,7 @@ static SBJsonStreamWriterStateArrayValue *kSBJsonStreamWriterStateArrayValue;
 @implementation SBJsonStreamWriterStateStart
 
 + (id)sharedInstance {
-    if (!kSBJsonStreamWriterStateStart) {
+    if(!kSBJsonStreamWriterStateStart) {
         kSBJsonStreamWriterStateStart = [SBJsonStreamWriterStateStart new];
         kSBJsonStreamWriterStateComplete = [SBJsonStreamWriterStateComplete new];
         kSBJsonStreamWriterStateError = [SBJsonStreamWriterStateError new];

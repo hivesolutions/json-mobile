@@ -54,7 +54,7 @@ static NSDecimalNumber *notANumber;
 
 - (id)init {
     self = [super init];
-    if (self) {
+    if(self) {
         data = [[NSMutableData alloc] initWithCapacity:1024u];
         maxDepth = 512;
         states = calloc(maxDepth, sizeof(SBJsonStreamWriterState*));
@@ -75,22 +75,22 @@ static NSDecimalNumber *notANumber;
 #pragma mark Methods
 
 - (BOOL)writeObject:(NSDictionary *)dict {
-    if (![self writeObjectOpen])
+    if(![self writeObjectOpen])
         return NO;
 
     NSArray *keys = [dict allKeys];
-    if (sortKeys)
+    if(sortKeys)
         keys = [keys sortedArrayUsingSelector:@selector(compare:)];
 
     for (id k in keys) {
-        if (![k isKindOfClass:[NSString class]]) {
+        if(![k isKindOfClass:[NSString class]]) {
             self.error = [NSString stringWithFormat:@"JSON object key must be string: %@", k];
             return NO;
         }
 
-        if (![self writeString:k])
+        if(![self writeString:k])
             return NO;
-        if (![self writeValue:[dict objectForKey:k]])
+        if(![self writeValue:[dict objectForKey:k]])
             return NO;
     }
 
@@ -98,10 +98,10 @@ static NSDecimalNumber *notANumber;
 }
 
 - (BOOL)writeArray:(NSArray*)array {
-    if (![self writeArrayOpen])
+    if(![self writeArrayOpen])
         return NO;
     for (id v in array)
-        if (![self writeValue:v])
+        if(![self writeValue:v])
             return NO;
     return [self writeArrayClose];
 }
@@ -109,12 +109,12 @@ static NSDecimalNumber *notANumber;
 
 - (BOOL)writeObjectOpen {
     SBJsonStreamWriterState *s = states[depth];
-    if ([s isInvalidState:self]) return NO;
-    if ([s expectingKey:self]) return NO;
+    if([s isInvalidState:self]) return NO;
+    if([s expectingKey:self]) return NO;
     [s appendSeparator:self];
-    if (humanReadable && depth) [s appendWhitespace:self];
+    if(humanReadable && depth) [s appendWhitespace:self];
 
-    if (maxDepth && ++depth > maxDepth) {
+    if(maxDepth && ++depth > maxDepth) {
         self.error = @"Nested too deep";
         return NO;
     }
@@ -126,8 +126,8 @@ static NSDecimalNumber *notANumber;
 
 - (BOOL)writeObjectClose {
     SBJsonStreamWriterState *state = states[depth--];
-    if ([state isInvalidState:self]) return NO;
-    if (humanReadable) [state appendWhitespace:self];
+    if([state isInvalidState:self]) return NO;
+    if(humanReadable) [state appendWhitespace:self];
     [data appendBytes:"}" length:1];
     [states[depth] transitionState:self];
     return YES;
@@ -135,12 +135,12 @@ static NSDecimalNumber *notANumber;
 
 - (BOOL)writeArrayOpen {
     SBJsonStreamWriterState *s = states[depth];
-    if ([s isInvalidState:self]) return NO;
-    if ([s expectingKey:self]) return NO;
+    if([s isInvalidState:self]) return NO;
+    if([s expectingKey:self]) return NO;
     [s appendSeparator:self];
-    if (humanReadable && depth) [s appendWhitespace:self];
+    if(humanReadable && depth) [s appendWhitespace:self];
 
-    if (maxDepth && ++depth > maxDepth) {
+    if(maxDepth && ++depth > maxDepth) {
         self.error = @"Nested too deep";
         return NO;
     }
@@ -152,9 +152,9 @@ static NSDecimalNumber *notANumber;
 
 - (BOOL)writeArrayClose {
     SBJsonStreamWriterState *state = states[depth--];
-    if ([state isInvalidState:self]) return NO;
-    if ([state expectingKey:self]) return NO;
-    if (humanReadable) [state appendWhitespace:self];
+    if([state isInvalidState:self]) return NO;
+    if([state expectingKey:self]) return NO;
+    if(humanReadable) [state appendWhitespace:self];
 
     [data appendBytes:"]" length:1];
     [states[depth] transitionState:self];
@@ -163,10 +163,10 @@ static NSDecimalNumber *notANumber;
 
 - (BOOL)writeNull {
     SBJsonStreamWriterState *s = states[depth];
-    if ([s isInvalidState:self]) return NO;
-    if ([s expectingKey:self]) return NO;
+    if([s isInvalidState:self]) return NO;
+    if([s expectingKey:self]) return NO;
     [s appendSeparator:self];
-    if (humanReadable) [s appendWhitespace:self];
+    if(humanReadable) [s appendWhitespace:self];
 
     [data appendBytes:"null" length:4];
     [s transitionState:self];
@@ -175,12 +175,12 @@ static NSDecimalNumber *notANumber;
 
 - (BOOL)writeBool:(BOOL)x {
     SBJsonStreamWriterState *s = states[depth];
-    if ([s isInvalidState:self]) return NO;
-    if ([s expectingKey:self]) return NO;
+    if([s isInvalidState:self]) return NO;
+    if([s expectingKey:self]) return NO;
     [s appendSeparator:self];
-    if (humanReadable) [s appendWhitespace:self];
+    if(humanReadable) [s appendWhitespace:self];
 
-    if (x)
+    if(x)
         [data appendBytes:"true" length:4];
     else
         [data appendBytes:"false" length:5];
@@ -190,23 +190,23 @@ static NSDecimalNumber *notANumber;
 
 
 - (BOOL)writeValue:(id)o {
-    if ([o isKindOfClass:[NSDictionary class]]) {
+    if([o isKindOfClass:[NSDictionary class]]) {
         return [self writeObject:o];
 
-    } else if ([o isKindOfClass:[NSArray class]]) {
+    } else if([o isKindOfClass:[NSArray class]]) {
         return [self writeArray:o];
 
-    } else if ([o isKindOfClass:[NSString class]]) {
+    } else if([o isKindOfClass:[NSString class]]) {
         [self writeString:o];
         return YES;
 
-    } else if ([o isKindOfClass:[NSNumber class]]) {
+    } else if([o isKindOfClass:[NSNumber class]]) {
         return [self writeNumber:o];
 
-    } else if ([o isKindOfClass:[NSNull class]]) {
+    } else if([o isKindOfClass:[NSNull class]]) {
         return [self writeNull];
 
-    } else if ([o respondsToSelector:@selector(proxyForJson)]) {
+    } else if([o respondsToSelector:@selector(proxyForJson)]) {
         return [self writeValue:[o proxyForJson]];
 
     }
@@ -258,12 +258,12 @@ static const char *strForChar(int c) {
 
 - (BOOL)writeString:(NSString*)string {
     SBJsonStreamWriterState *s = states[depth];
-    if ([s isInvalidState:self]) return NO;
+    if([s isInvalidState:self]) return NO;
     [s appendSeparator:self];
-    if (humanReadable) [s appendWhitespace:self];
+    if(humanReadable) [s appendWhitespace:self];
 
     NSMutableData *buf = [stringCache objectForKey:string];
-    if (buf) {
+    if(buf) {
         [data appendBytes:[buf bytes] length:[buf length]];
         [s transitionState:self];
         return YES;
@@ -279,8 +279,8 @@ static const char *strForChar(int c) {
     for (i = 0; i < len; i++) {
         int c = utf8[i];
         BOOL isControlChar = c >= 0 && c < 32;
-        if (isControlChar || c == '"' || c == '\\') {
-            if (i - written)
+        if(isControlChar || c == '"' || c == '\\') {
+            if(i - written)
                 [buf appendBytes:utf8 + written length:i - written];
             written = i + 1;
 
@@ -289,7 +289,7 @@ static const char *strForChar(int c) {
         }
     }
 
-    if (i - written)
+    if(i - written)
         [buf appendBytes:utf8 + written length:i - written];
 
     [buf appendBytes:"\"" length:1];
@@ -300,28 +300,28 @@ static const char *strForChar(int c) {
 }
 
 - (BOOL)writeNumber:(NSNumber*)number {
-    if ((CFBooleanRef)number == kCFBooleanTrue || (CFBooleanRef)number == kCFBooleanFalse)
+    if((CFBooleanRef)number == kCFBooleanTrue || (CFBooleanRef)number == kCFBooleanFalse)
         return [self writeBool:[number boolValue]];
 
     SBJsonStreamWriterState *s = states[depth];
-    if ([s isInvalidState:self]) return NO;
-    if ([s expectingKey:self]) return NO;
+    if([s isInvalidState:self]) return NO;
+    if([s expectingKey:self]) return NO;
     [s appendSeparator:self];
-    if (humanReadable) [s appendWhitespace:self];
+    if(humanReadable) [s appendWhitespace:self];
 
-    if ((CFNumberRef)number == kCFNumberPositiveInfinity) {
+    if((CFNumberRef)number == kCFNumberPositiveInfinity) {
         self.error = @"+Infinity is not a valid number in JSON";
         return NO;
 
-    } else if ((CFNumberRef)number == kCFNumberNegativeInfinity) {
+    } else if((CFNumberRef)number == kCFNumberNegativeInfinity) {
         self.error = @"-Infinity is not a valid number in JSON";
         return NO;
 
-    } else if ((CFNumberRef)number == kCFNumberNaN) {
+    } else if((CFNumberRef)number == kCFNumberNaN) {
         self.error = @"NaN is not a valid number in JSON";
         return NO;
 
-    } else if (number == notANumber) {
+    } else if(number == notANumber) {
         self.error = @"NaN is not a valid number in JSON";
         return NO;
     }
@@ -338,7 +338,7 @@ static const char *strForChar(int c) {
             len = snprintf(num, sizeof num, "%llu", [number unsignedLongLongValue]);
             break;
         case 'f': case 'd': default:
-            if ([number isKindOfClass:[NSDecimalNumber class]]) {
+            if([number isKindOfClass:[NSDecimalNumber class]]) {
                 char const *utf8 = [[number stringValue] UTF8String];
                 [data appendBytes:utf8 length: strlen(utf8)];
                 [s transitionState:self];

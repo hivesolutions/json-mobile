@@ -40,7 +40,7 @@
 
 - (id)init {
     self = [super init];
-    if (self)
+    if(self)
         self.maxDepth = 512;
     return self;
 }
@@ -52,17 +52,17 @@
 
 - (NSString*)stringWithObject:(id)value {
     NSData *data = [self dataWithObject:value];
-    if (data)
+    if(data)
         return [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] autorelease];
     return nil;
 }
 
 - (NSString*)stringWithObject:(id)value error:(NSError**)error_ {
     NSString *tmp = [self stringWithObject:value];
-    if (tmp)
+    if(tmp)
         return tmp;
 
-    if (error_) {
+    if(error_) {
         NSDictionary *ui = [NSDictionary dictionaryWithObjectsAndKeys:error, NSLocalizedDescriptionKey, nil];
         *error_ = [NSError errorWithDomain:@"org.brautaset.json.parser.ErrorDomain" code:0 userInfo:ui];
     }
@@ -77,13 +77,13 @@
     streamWriter.humanReadable = self.humanReadable;
 
     BOOL ok = NO;
-    if ([object isKindOfClass:[NSDictionary class]])
+    if([object isKindOfClass:[NSDictionary class]])
         ok = [streamWriter writeObject:object];
 
-    else if ([object isKindOfClass:[NSArray class]])
+    else if([object isKindOfClass:[NSArray class]])
         ok = [streamWriter writeArray:object];
 
-    else if ([object respondsToSelector:@selector(proxyForJson)])
+    else if([object respondsToSelector:@selector(proxyForJson)])
         return [self dataWithObject:[object proxyForJson]];
     else {
         self.error = @"Not valid type for JSON";
@@ -91,7 +91,7 @@
     }
 
     // in case the result is ok
-    if (ok) {
+    if(ok) {
         return streamWriter.data;
     }
 
