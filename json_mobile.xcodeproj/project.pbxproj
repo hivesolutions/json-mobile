@@ -248,6 +248,7 @@
 		C2935B92132AD9A500B39BE2 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastUpgradeCheck = 0420;
 				ORGANIZATIONNAME = "Hive Solutions Lda.";
 			};
 			buildConfigurationList = C2935B95132AD9A500B39BE2 /* Build configuration list for PBXProject "json_mobile" */;
